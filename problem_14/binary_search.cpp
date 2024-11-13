@@ -9,7 +9,6 @@ struct Student {
 };
 
 int main() {
-    bool found = false;
     Student arr[7] = {
         {9950310962, "Ronaldo Valentino Uneputty", 80},
         {9952382180, "Ari Lutfianto", 65},
@@ -20,19 +19,20 @@ int main() {
         {9970293945, "Alivia Rahma Pramesti", 70}
     };
 
-    int i = 0, j = sizeof(arr) / sizeof(arr[0]) - 1, k;
-    long int query = 9950310962;
+    long int query = 9950310962; 
+    int i = 0, j = 7 - 1; 
+    bool found = false;
 
-    // Binary Search Loop
-    while (!found && i <= j) {
-        k = (i + j) / 2;
-        if (arr[k].NISN == query) {
-            found = true;
-            cout << "Student found: " << arr[k].name << " with Value: " << arr[k].Value << endl;
-        } else if (arr[k].NISN < query) {
-            i = k + 1;
-        } else {
-            j = k - 1;
+    // Perform binary search
+    while (i <= j && !found) {
+        int mid = (i + j) / 2;  
+        if (arr[mid].NISN == query) {  
+            found = true;  
+            cout << "Student found: " << arr[mid].name << ", NISN: " << arr[mid].NISN << ", Value: " << arr[mid].Value << endl;
+        } else if (arr[mid].NISN < query) {  
+            i = mid + 1;
+        } else {  
+            j = mid - 1;
         }
     }
 
